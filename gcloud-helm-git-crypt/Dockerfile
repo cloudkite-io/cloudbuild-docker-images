@@ -37,3 +37,5 @@ RUN mkdir /tmp/helm                                      \
   && chmod +x /usr/local/bin/helm                        \
   && rm -rf /tmp/helm
 COPY --from=git-crypt /usr/local/bin/git-crypt /usr/local/bin/git-crypt
+ADD helm.bash /helm.bash
+ENTRYPOINT ["/helm.bash"]
