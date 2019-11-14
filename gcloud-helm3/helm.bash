@@ -32,9 +32,6 @@ EOF
     fi
 fi
 
-echo "Running: helm init --client-only"
-helm init --client-only
-
 # if GCS_PLUGIN_VERSION is set, install the plugin
 if [[ -n $GCS_PLUGIN_VERSION ]]; then
   echo "Installing helm GCS plugin version $GCS_PLUGIN_VERSION "
@@ -45,7 +42,7 @@ fi
 if [[ -n $HELM_REPO_NAME && -n $HELM_REPO_URL ]]; then
   echo "Adding chart helm repo $HELM_REPO_URL "
   helm repo add $HELM_REPO_NAME $HELM_REPO_URL
-fi
 
-echo "Running: helm repo update"
-helm repo update
+  echo "Running: helm repo update"
+  helm repo update
+fi
