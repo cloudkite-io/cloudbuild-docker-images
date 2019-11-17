@@ -22,8 +22,6 @@ EOF
     [ ! "$zone" -o "$region" ] && var_usage
 
     if [ -n "$region" ]; then
-      echo "Running: gcloud config set container/use_v1_api_client false"
-      gcloud config set container/use_v1_api_client false
       echo "Running: gcloud beta container clusters get-credentials --project=\"$project\" --region=\"$region\" \"$cluster\""
       gcloud beta container clusters get-credentials --project="$project" --region="$region" "$cluster" || exit
     else
@@ -46,3 +44,8 @@ if [[ -n $HELM_REPO_NAME && -n $HELM_REPO_URL ]]; then
   echo "Running: helm repo update"
   helm repo update
 fi
+
+if [ "$DEBUG" = true ]; then
+    echo "Running: helm $@"
+fi
+exec "$@"
