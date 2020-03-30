@@ -46,6 +46,6 @@ if [[ -n $HELM_REPO_NAME && -n $HELM_REPO_URL ]]; then
 fi
 
 if [ "$DEBUG" = true ]; then
-    echo "Running: helm $@"
+    echo "Running: $@"
 fi
 exec "$@"
