@@ -14,13 +14,13 @@ RUN curl -L https://github.com/AGWA/git-crypt/archive/$GIT_CRYPT_VERSION.tar.gz 
 
 FROM alpine as deployment
 ENV CLOUDSDK_CORE_DISABLE_PROMPTS 1
-ENV DOCKER_COMPOSE_VERSION 1.23.2
+ENV DOCKER_COMPOSE_VERSION 1.25.4
 ENV HELM_VERSION 3.4.0
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
-RUN apk --no-cache add \
+RUN apk add --no-cache --update \
   bash \
   curl \
-  python \
+  python3 \
   openssh-client \
   openssl \
   openssl-dev
