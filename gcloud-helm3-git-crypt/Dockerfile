@@ -20,6 +20,7 @@ ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN apk add --no-cache --update \
   bash \
   curl \
+  gnupg \
   python3 \
   openssh-client \
   openssl \
@@ -28,7 +29,7 @@ RUN apk add --no-cache --update \
 RUN curl https://sdk.cloud.google.com | bash            \
   && mkdir -p /opt                                      \
   && mv /root/google-cloud-sdk /opt                     \
-  && gcloud components install beta kubectl          
+  && gcloud components install beta kubectl
 ## Install helm
 RUN mkdir /tmp/helm                                      \
   && cd /tmp/helm                                        \
