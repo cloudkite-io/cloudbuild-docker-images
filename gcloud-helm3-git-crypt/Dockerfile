@@ -1,8 +1,8 @@
 FROM alpine
 ENV GIT_CRYPT_VERSION 0.6.0
 ENV CLOUDSDK_CORE_DISABLE_PROMPTS 1
-ENV DOCKER_COMPOSE_VERSION 1.28.0
-ENV HELM_VERSION 3.5.0
+ENV DOCKER_COMPOSE_VERSION 1.29.1
+ENV HELM_VERSION 3.5.4
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN apk add --no-cache --update \
   bash \
@@ -30,5 +30,6 @@ RUN mkdir /tmp/helm                                      \
   && cp /tmp/helm/linux-amd64/helm /usr/local/bin/helm   \
   && chmod +x /usr/local/bin/helm                        \
   && rm -rf /tmp/helm
+ADD helm-rollback.bash /helm-rollback.bash
 ADD helm.bash /helm.bash
 ENTRYPOINT ["/helm.bash"]
