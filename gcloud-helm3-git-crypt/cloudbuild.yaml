@@ -1,0 +1,21 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker build --tag=gcr.io/$PROJECT_ID/${_NAME}:${_HELM_VERSION} --tag=gcr.io/$PROJECT_ID/${_NAME}:latest --tag=gcr.io/$PROJECT_ID/${_NAME}:$(date +"%Y%m%d") --build-arg HELM_VERSION=${_HELM_VERSION} --build-arg GIT_CRYPT_VERSION=${_GIT_CRYPT_VERSION} .']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker push gcr.io/$PROJECT_ID/${_NAME}:$(date +"%Y%m%d")']
+# Sanity Check: make sure basic functionality works
+- name: 'gcr.io/$PROJECT_ID/${_NAME}:latest'
+  entrypoint: 'bash'
+  args: ['-c', 'helm version']
+  env:
+    - SKIP_CLUSTER_CONFIG=true
+images:
+  - 'gcr.io/$PROJECT_ID/${_NAME}:${_HELM_VERSION}'
+  - 'gcr.io/$PROJECT_ID/${_NAME}:latest'
+tags: ['cloud-builders-community']
+substitutions:
+  _HELM_VERSION: 3.6.3
+  _GIT_CRYPT_VERSION: 0.6.0
+  _NAME: gcloud-helm3-git-crypt

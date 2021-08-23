@@ -1,5 +1,6 @@
 FROM alpine as git-crypt
-ENV GIT_CRYPT_VERSION 0.6.0
+ARG GIT_CRYPT_VERSION=0.6.0
+ENV GIT_CRYPT_VERSION=$GIT_CRYPT_VERSION
 RUN apk --no-cache add \
   curl \
   g++ \
@@ -20,7 +21,8 @@ ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN apk --no-cache add \
   bash \
   curl \
-  python \
+  python3 \
+  python3-dev \
   openssh-client \
   openssl \
   openssl-dev

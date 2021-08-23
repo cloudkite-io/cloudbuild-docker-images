@@ -1,12 +1,14 @@
 FROM alpine as deployment
 ENV CLOUDSDK_CORE_DISABLE_PROMPTS 1
 ENV DOCKER_COMPOSE_VERSION 1.25.4
-ENV HELM_VERSION 3.6.3
+ARG HELM_VERSION=3.2.0
+ENV HELM_VERSION=$HELM_VERSION
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
 RUN apk --no-cache add \
   bash \
   curl \
-  python \
+  python3 \
+  python3-dev \
   openssh-client \
   openssl \
   openssl-dev
