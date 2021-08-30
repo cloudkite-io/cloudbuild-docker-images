@@ -1,0 +1,113 @@
+Amazon Web Services SDK
+Ant Plugin
+Apache HttpComponents Client 4.x API Plugin
+Authentication Tokens API Plugin
+AWS CodeDeploy Plugin for Jenkins
+Basic Branch Build Strategies Plugin
+Bitbucket Branch Source	
+Bitbucket Plugin
+Integrates with BitBucket
+Bitbucket Push and Pull Request Plugin
+Bootstrap 4 API Plugin
+Bootstrap 5 API
+bouncycastle API
+Branch API Plugin
+Caffeine API Plugin
+Checks API plugin
+CloudBees AWS Credentials
+Command Agent Launcher Plugin
+Config File Provider Plugin
+Configuration as Code
+Credentials Binding Plugin
+Credentials Plugin
+Display URL API
+Docker
+Docker API Plugin
+Docker Commons Plugin
+Docker Pipeline
+Docker Slaves Plugin	
+docker-build-step
+Durable Task
+ECharts API
+EnvInject API Plugin
+Extended Read Permission Plugin
+File Operations Plugin
+Folders Plugin
+Font Awesome API	
+Generic Webhook Trigger
+Git
+Git client plugin
+Git Parameter Plug-In	
+GIT server Plugin
+GitHub
+GitHub API Plugin
+GitHub Branch Source Plugin
+Google Login Plugin
+Google OAuth Credentials plugin
+Handy Uri Templates 2.x API Plugin
+Jackson 2 API Plugin
+Java JSON Web Token (JJWT) Plugin
+JavaScript GUI Lib: ACE Editor bundle plugin
+JavaScript GUI Lib: Handlebars bundle plugin
+JavaScript GUI Lib: jQuery bundles (jQuery and jQuery UI) plugin
+JavaScript GUI Lib: Moment.js bundle plugin
+JAXB
+Jira plugin
+Job DSL
+jQuery plugin
+JQuery3 API Plugin
+JSch dependency plugin	
+JUnit
+Kubernetes Client API Plugin
+Kubernetes Credentials Plugin
+Kubernetes plugin
+Lockable Resources plugin
+Mailer Plugin
+Matrix Authorization Strategy Plugin
+Matrix Project Plugin
+Mercurial plugin
+Metrics Plugin
+NodeJS Plugin
+OAuth Credentials plugin
+OkHttp Plugin
+Oracle Java SE Development Kit Installer Plugin
+Pipeline
+Pipeline Graph Analysis Plugin
+Pipeline NPM Integration Plugin
+Pipeline: API
+Pipeline: AWS Steps
+Pipeline: Basic Steps
+Pipeline: Build Step
+Pipeline: Declarative
+Pipeline: Declarative Extension Points API
+Pipeline: Groovy
+Pipeline: Input Step
+Pipeline: Job
+Pipeline: Milestone Step
+Pipeline: Model API
+Pipeline: Multibranch
+Pipeline: Multibranch with defaults
+Pipeline: Nodes and Processes
+Pipeline: REST API Plugin
+Pipeline: SCM Step
+Pipeline: Shared Groovy Libraries
+Pipeline: Stage Step
+Pipeline: Stage Tags Metadata	
+Pipeline: Stage View Plugin	
+Pipeline: Step API	
+Pipeline: Supporting APIs	
+Plain Credentials Plugin	
+Plugin Utilities API Plugin	
+Popper.js 2 API Plugin	
+Popper.js API Plugin	
+Role-based Authorization Strategy	
+SCM API Plugin	
+Script Security Plugin
+Snakeyaml API Plugin
+SSH Build Agents
+SSH Credentials Plugin
+SSH server
+Structs Plugin
+Token Macro Plugin
+Trilead API Plugin	
+Variant Plugin
