@@ -1,0 +1,20 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: [ '-c', 'docker build --tag=gcr.io/$PROJECT_ID/${_NAME}:${_ARGO_CD_VERSION} --tag=gcr.io/$PROJECT_ID/${_NAME}:latest --tag=gcr.io/$PROJECT_ID/${_NAME}:$$(date +"%Y%m%d") --build-arg ARGO_CD_VERSION=${_ARGO_CD_VERSION} --build-arg GIT_CRYPT_VERSION=${_GIT_CRYPT_VERSION} .' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: [ '-c', 'docker push gcr.io/$PROJECT_ID/${_NAME}:$(date +"%Y%m%d")' ]
+  # Sanity Check: make sure basic functionality works
+  - name: 'gcr.io/$PROJECT_ID/${_NAME}:latest'
+    entrypoint: 'bash'
+    args: [ '-c', 'argocd version --client' ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/${_NAME}:${_ARGO_CD_VERSION}'
+  - 'gcr.io/$PROJECT_ID/${_NAME}:latest'
+tags: [ 'cloud-builders-community' ]
+substitutions:
+  _ARGO_CD_VERSION: v2.2.5
+  _GIT_CRYPT_VERSION: 0.6.0-1build2
+  _NAME: argocd-git-crypt
