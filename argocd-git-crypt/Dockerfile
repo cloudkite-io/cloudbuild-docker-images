@@ -11,5 +11,8 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN mv /usr/bin/git /usr/bin/git.bin
+COPY git /usr/bin/git
+
 # Switch back to non-root user
 USER 999
