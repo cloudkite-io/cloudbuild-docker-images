@@ -1,0 +1,1 @@
+This image contains composer and xdebug mainly used for running php tests with coverage reports
