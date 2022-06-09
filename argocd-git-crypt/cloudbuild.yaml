@@ -15,6 +15,6 @@ images:
   - 'gcr.io/$PROJECT_ID/${_NAME}:latest'
 tags: [ 'cloud-builders-community' ]
 substitutions:
-  _ARGO_CD_VERSION: v2.2.5
+  _ARGO_CD_VERSION: v2.3.4
   _GIT_CRYPT_VERSION: 0.6.0-1build2
   _NAME: argocd-git-crypt
