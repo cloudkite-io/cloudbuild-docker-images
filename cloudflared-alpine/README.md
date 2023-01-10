@@ -7,7 +7,7 @@ Cloudflared binary on apline image
 Start script is used to start cloudflared processes that are then exposed locally within the container.
 
 required env vars:
-
+* INSTANCES (comma separated string)
 * CF_SERVICE_AUTH_ID 
 * CF_SERVICE_AUTH_SECRET
 * BASE_PORT
