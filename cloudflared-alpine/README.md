@@ -8,8 +8,8 @@ Start script is used to start cloudflared processes that are then exposed locall
 
 required env vars:
 
-* ATLANTIS_CF_SERVICE_AUTH_ID 
-* ATLANTIS_CF_SERVICE_AUTH_SECRET
+* CF_SERVICE_AUTH_ID 
+* CF_SERVICE_AUTH_SECRET
 * BASE_PORT
 
 
