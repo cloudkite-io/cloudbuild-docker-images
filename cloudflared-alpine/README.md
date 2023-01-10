@@ -22,7 +22,7 @@ docker push gcr.io/cloudkite-public/cloudflared-alpine:$_tag
 
 # usage
 
-This container would be useful if using cloudflared to access tcp service using cloudflared service tokens.
+This container would be useful if using cloudflared to access tcp services using cloudflared service tokens.
 An example is having cloudflared access a list of db instances within a private network and expose those via various ports within 
 the container.
 
