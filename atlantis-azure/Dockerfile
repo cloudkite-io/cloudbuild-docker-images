@@ -1,3 +1,5 @@
+
+
 FROM ghcr.io/runatlantis/atlantis:v0.19.8
 
 RUN apk --no-cache --update add py3-pip jq git-crypt
