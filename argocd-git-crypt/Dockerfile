@@ -1,9 +1,9 @@
-FROM argoproj/argocd:v2.3.4
+FROM argoproj/argocd:v2.5.6
 
 # Switch to root for the ability to perform install
 USER root
 
-ARG GIT_CRYPT_VERSION=0.6.0-1build2
+ARG GIT_CRYPT_VERSION=0.6.0-1ubuntu1
 ENV GIT_CRYPT_VERSION=$GIT_CRYPT_VERSION
 
 RUN apt-get update \
