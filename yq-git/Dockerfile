@@ -1,2 +1,2 @@
 FROM alpine
-RUN apk --no-cache add git yq curl openssh-client
+RUN apk --no-cache add git yq jq curl openssh-client
