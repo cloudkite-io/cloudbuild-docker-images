@@ -1,0 +1,20 @@
+# See list of built-in substitutions at
+# https://cloud.google.com/container-builder/docs/configuring-builds/substitute-variable-values
+
+substitutions:
+  _SOURCE_BUCKET: gs://<source_bucket_with_backups>
+  _DEST_DATASET: dataset_name
+  _DEST_DATASET_LOCATION: US
+  _PROJECT: cloudkite-dev
+  _IMAGE_TAG: latest
+
+steps:
+- name: 'gcr.io/cloudkite-public/cloudsql-bigquery-backup-app:${_IMAGE_TAG}'
+  id: 'bigquery-restore'
+  entrypoint: sh
+  args:
+    - -c
+    - |
+      python3 /app/restore.py --input=${_SOURCE_BUCKET} --output=${_DEST_DATASET} --location=${_DEST_DATASET_LOCATION} --project=${_PROJECT}
+
+timeout: 43200s
