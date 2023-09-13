@@ -1,5 +1,5 @@
 # sonna-scanner-cli
- This image helps us to keep a copy of `sonarsource/sonar-scanner-cli` docker image in our CK library and also add additional packages to it. Currently, we only have `sudo` added.
+ This is a `sonarsource/sonar-scanner-cli` with `sudo` docker image which allows us to run `sonar` CLI commands and Tailscale GitHub action steps. `sudo` is required in the Tailscale GHA step.
 
 
  ### How to build
