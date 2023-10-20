@@ -16,6 +16,6 @@ images:
   - 'gcr.io/$PROJECT_ID/${_NAME}:latest'
 tags: ['cloud-builders-community']
 substitutions:
-  _HELM_VERSION: 3.6.3
-  _GIT_CRYPT_VERSION: 0.6.0
+  _HELM_VERSION: 3.13.1
+  _GIT_CRYPT_VERSION: 0.7.0
   _NAME: gcloud-helm3-git-crypt
