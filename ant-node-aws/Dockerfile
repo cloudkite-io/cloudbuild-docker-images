@@ -1,9 +1,14 @@
-# Start with the OpenJDK 8 base image
-FROM openjdk:8-jdk
+# Start with the Node.js 11 Alpine base image
+FROM node:11-alpine
 
 # Set environment variables for Ant
 ENV ANT_VERSION 1.10.11
 ENV ANT_HOME /opt/ant
+
+# Install OpenJDK, Wget and AWS CLI dependencies
+RUN apk --no-cache add openjdk8 wget python3 py3-pip \
+    && pip3 install --upgrade pip \
+    && pip3 install awscli
 
 # Download and install Ant
 RUN wget http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz \
@@ -13,20 +18,11 @@ RUN wget http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-b
     && ln -sfn /opt/ant/bin/ant /usr/bin/ant \
     && rm apache-ant-${ANT_VERSION}-bin.tar.gz
 
-# Install Node.js
-RUN apt-get update \
-    && apt-get install -y nodejs npm \
-    && apt-get clean
-
-# Install AWS CLI
-RUN apt-get update \
-    && apt-get install -y awscli \
-    && apt-get clean
-
 # Check versions of installed software
 RUN ant -version \
     && node -v \
-    && aws --version
+    && aws --version \
+    && java -version
 
 # Provide a default command to execute the build
 CMD ["ant"]
