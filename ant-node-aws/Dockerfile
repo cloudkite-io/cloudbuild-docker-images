@@ -5,6 +5,8 @@ FROM node:18-alpine
 ENV ANT_VERSION 1.10.11
 ENV ANT_HOME /opt/ant
 
+RUN apk --no-cache add git openssh-client rsync bash python2 make g++ jq
+
 # Install OpenJDK, Wget and AWS CLI dependencies
 RUN apk --no-cache add openjdk8 wget python3 py3-pip \
     && pip3 install --upgrade pip \
