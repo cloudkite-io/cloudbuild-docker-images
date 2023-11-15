@@ -1,11 +1,9 @@
 # Start with the Node.js 11 Alpine base image
-FROM node:18-alpine
+FROM node:11-alpine
 
 # Set environment variables for Ant
 ENV ANT_VERSION 1.10.11
 ENV ANT_HOME /opt/ant
-
-RUN apk --no-cache add git openssh-client rsync bash python2 make g++ jq
 
 # Install OpenJDK, Wget and AWS CLI dependencies
 RUN apk --no-cache add openjdk8 wget python3 py3-pip \
@@ -19,6 +17,12 @@ RUN wget http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-b
     && sh -c 'echo ANT_HOME=/opt/ant >> /etc/environment' \
     && ln -sfn /opt/ant/bin/ant /usr/bin/ant \
     && rm apache-ant-${ANT_VERSION}-bin.tar.gz
+
+# Check versions of installed software
+RUN ant -version \
+    && node -v \
+    && aws --version \
+    && java -version
 
 # Provide a default command to execute the build
 CMD ["ant"]
