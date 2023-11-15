@@ -6,7 +6,7 @@ ENV ANT_VERSION 1.10.11
 ENV ANT_HOME /opt/ant
 
 # Install OpenJDK, Wget and AWS CLI dependencies
-RUN apk --no-cache add openjdk8 wget python3 py3-pip \
+RUN apk --no-cache add openjdk8 wget python3 py3-pip jq \
     && pip3 install --upgrade pip \
     && pip3 install awscli
 
