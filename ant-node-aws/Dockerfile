@@ -1,5 +1,5 @@
 # Start with the Node.js 11 Alpine base image
-FROM node:11-alpine
+FROM node:18-alpine
 
 # Set environment variables for Ant
 ENV ANT_VERSION 1.10.11
