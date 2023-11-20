@@ -7,5 +7,6 @@ This is a debian based image that contains:
 ##  Usage
 ```bash
 export _tag=15.5-bookworm
-docker build -t gcr.io/cloudkite-public/postgresclient-aws:$_tag .
-docker push gcr.io/cloudkite-public/postgresclient-aws:$_tag
+docker build -t us-central1-docker.pkg.dev/cloudkite-public/docker-images/postgresclient-aws:$_tag .
+docker push us-central1-docker.pkg.dev/cloudkite-public/docker-images/postgresclient-aws:$_tag
+```
