@@ -7,10 +7,13 @@ Cloudflared binary on apline image
 Start script is used to start cloudflared processes that are then exposed locally within the container.
 
 required env vars:
-* INSTANCES (comma separated string)
+* BASE_PORT
+* INSTANCES - comma separated string.
+Will increment db port starting with ${BASE_PORT}.
+You can set port explicitly
+ex: `db_host_1,db_host_2:port,db_host_3`
 * CF_SERVICE_AUTH_ID
 * CF_SERVICE_AUTH_SECRET
-* BASE_PORT
 * TUNNEL_ADDRESS
 
 
