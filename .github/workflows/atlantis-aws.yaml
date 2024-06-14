@@ -37,5 +37,5 @@ jobs:
         run: |
           export DATE=$(date +'%m%d%Y')
           docker build -f Dockerfile \
-            -t oci://$GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:$DATE .
-          docker push -a oci://$GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME
+            -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:$DATE .
+          docker push -a $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME
