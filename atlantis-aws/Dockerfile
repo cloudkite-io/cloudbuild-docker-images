@@ -4,5 +4,6 @@ USER root
 RUN apk --no-cache --update add jq python3 py3-pip nodejs npm && \
     python3 -m venv etc/pyvenv && \
     source etc/pyvenv && \
-    pip3 install awscli --upgrade
+    pip install awscli --upgrade && \
+    deactivate
 USER atlantis
