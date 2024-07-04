@@ -1,3 +1,3 @@
 FROM postgres:alpine3.17
 
-RUN apk add jq
+RUN apk add jq curl mysql-client
