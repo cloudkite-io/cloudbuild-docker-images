@@ -11,3 +11,7 @@ docker build -t us-central1-docker.pkg.dev/cloudkite-public/docker-images/atlant
              . && \
 docker push -a us-central1-docker.pkg.dev/cloudkite-public/docker-images/atlantis-aws
 ```
+
+## CICD
+
+The deployment for this image builds only on push of a tag to the repo. Please use the version of the atlantis image in the tag, e.g v0.33.0, for the image to be tagged as us-central1-docker.pkg.dev/cloudkite-public/docker-images/atlantis-aws:v0.33.0.
