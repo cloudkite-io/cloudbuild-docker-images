@@ -7,7 +7,7 @@ on:
       - 'postgresclient-aws-*' # e.g postgresclient-aws-15-5-bookworm
 
 env:
-  IMAGE_NAME: atlantis-aws
+  IMAGE_NAME: postgresclient-aws
   GAR_LOCATION: us-central1
   PROJECT_NAME: cloudkite-public
   PROJECT_ID: 297731695546
