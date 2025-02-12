@@ -1,3 +1,7 @@
+# Use
+
+Docker image that is used to export Azure SQL DB to ABS and import to desired server
+
 # Building and pushing Image
 ```bash
 export _tag=`date +%Y%m%d`
