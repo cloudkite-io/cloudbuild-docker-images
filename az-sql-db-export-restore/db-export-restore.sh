@@ -8,7 +8,7 @@
 DATE=$(date +%s)
 
 . /azure/bin/activate && az login --federated-token "$(cat $AZURE_FEDERATED_TOKEN_FILE)" \
---service-principal -u ${AZURE_CLIENT_I} -t ${AZURE_TENANT_ID}
+--service-principal -u ${AZURE_CLIENT_ID} -t ${AZURE_TENANT_ID}
 
 ## export sql db 
 az sql db export -s ${SOURCE_DB_SERVER} -n ${SOURCE_DB_NAME} -g ${SOURCE_DB_RESOURCE_GROUP_NAME} \
