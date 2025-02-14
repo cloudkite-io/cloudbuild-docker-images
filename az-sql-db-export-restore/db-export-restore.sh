@@ -25,10 +25,18 @@ az sql db create -s ${DESTINATION_DB_SERVER} -n ${DESTINATION_DB_NAME} \
 -g ${DESTINATION_DB_RESOURCE_GROUP_NAME} -e GeneralPurpose \
 -f Gen5 -c 1 --compute-model Serverless --auto-pause-delay 60
 
-sleep 5
+## update db server to allow public access required by import
+
+az sql server update -n ${DESTINATION_DB_SERVER} -g ${DESTINATION_DB_RESOURCE_GROUP_NAME} \
+-e true
 
 ## import sql db
 az sql db import -s ${DESTINATION_DB_SERVER}  -n ${DESTINATION_DB_NAME} -g ${DESTINATION_DB_RESOURCE_GROUP_NAME} \
 -p ${DESTINATION_DB_PASSWORD} -u ${DESTINATION_DB_USER} \
 --storage-key ${STORAGE_ACCESS_KEY} --storage-key-type StorageAccessKey \
 --auth-type SQL --storage-uri "${STORAGE_URI}/${SOURCE_DB_NAME}-db-backup-${DATE}.bacpac"
+
+## update db server to disable public access
+
+az sql server update -n ${DESTINATION_DB_SERVER} -g ${DESTINATION_DB_RESOURCE_GROUP_NAME} \
+--enable-public-network false
