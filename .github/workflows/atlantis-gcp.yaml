@@ -1,0 +1,50 @@
+name: Publish atlantis-gcp
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'atlantis-gcp-*' # e.g atlantis-gcp-15-5-bookworm
+
+env:
+  IMAGE_NAME: atlantis-gcp
+  GAR_LOCATION: us-central1
+  PROJECT_NAME: cloudkite-public
+  PROJECT_ID: 297731695546
+  REPOSITORY: docker-images
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Git Commit - set IMAGE_TAG
+        run: echo "IMAGE_TAG=$(echo ${{ github.ref_name}} | sed 's/atlantis-gcp-//')" >> $GITHUB_ENV
+
+      - name: Get environment for build job
+        run: echo "${{ env.IMAGE_TAG }}"
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/${{ env.PROJECT_ID }}/locations/global/workloadIdentityPools/github-actions/providers/github-oidc
+          service_account: github-actions@${{ env.PROJECT_NAME }}.iam.gserviceaccount.com
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Docker configuration
+        run: gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev --quiet
+
+      - name: Build and push image
+        working-directory: ${{ env.IMAGE_NAME }}
+        run: |
+          docker build -f Dockerfile \
+            -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:${{ env.IMAGE_TAG }} .
+          docker push -a $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME
