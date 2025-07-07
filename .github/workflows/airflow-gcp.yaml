@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'airflow-gcp-*' # e.g airflow-gcp-3.0.2
+      - 'airflow-gcp-*' # e.g airflow-gcp-3.0.2-202507072333
 
 env:
   IMAGE_NAME: airflow-gcp
