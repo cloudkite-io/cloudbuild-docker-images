@@ -1,0 +1,22 @@
+# cloudbuild.yaml
+substitutions:
+  _IMAGE_TAG: ''
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'us-central1-docker.pkg.dev/cloudkite-public/docker-images/airflow-gcp:${_IMAGE_TAG}',
+        '.'
+      ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        'us-central1-docker.pkg.dev/cloudkite-public/docker-images/airflow-gcp:${_IMAGE_TAG}'
+      ]
+images:
+  - 'us-central1-docker.pkg.dev/cloudkite-public/docker-images/airflow-gcp:${_IMAGE_TAG}'
