@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*.*.*'
+      - 'atlantis-aws-*' # e.g atlantis-aws-v0.35.0
 
 env:
   IMAGE_NAME: atlantis-aws
@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Git Commit - set IMAGE_TAG
+        run: echo "IMAGE_TAG=$(echo ${{ github.ref_name}} | sed 's/atlantis-aws-//')" >> $GITHUB_ENV
 
       - name: Authenticate to Google Cloud
         id: auth
