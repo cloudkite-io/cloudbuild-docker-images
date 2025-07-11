@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'atlantis-gcp-*' # e.g atlantis-gcp-15-5-bookworm
+      - 'atlantis-gcp-*' # e.g atlantis-gcp-v0.35.0
 
 env:
   IMAGE_NAME: atlantis-gcp

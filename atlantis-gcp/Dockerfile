@@ -1,8 +1,8 @@
-FROM ghcr.io/runatlantis/atlantis:v0.34.0
+FROM ghcr.io/runatlantis/atlantis:v0.35.0
 
 USER root
 ENV ARCH="x86_64"
-ENV cloud_sdk_version="455.0.0"
+ENV cloud_sdk_version="529.0.0"
 RUN apk --no-cache upgrade && apk --no-cache add \
       jq \
       curl \
