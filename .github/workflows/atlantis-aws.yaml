@@ -43,5 +43,5 @@ jobs:
         working-directory: ${{ env.IMAGE_NAME }}
         run: |
           docker build -f Dockerfile \
-            -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:${{ github.ref_name}} .
+            -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:${{ env.IMAGE_TAG}} .
           docker push -a $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME
