@@ -3,13 +3,12 @@ FROM registry.gitlab.com/xrow-public/helm-mssql/mssql:1.2.0
 
 USER root
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN yum install -y \
         curl \
         jq \
         ca-certificates && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 RUN mkdir -p /opt/mssql/scripts
 
