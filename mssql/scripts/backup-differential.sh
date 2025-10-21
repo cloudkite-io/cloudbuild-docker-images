@@ -11,7 +11,7 @@ DB_PASSWORD="${MSSQL_SA_PASSWORD}"
 S3_BUCKET="${S3_BUCKET}"
 S3_REGION="${S3_REGION}"
 S3_ENDPOINT="${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com"
-BACKUP_FILENAME="${DB_DATABASE}-diff-$(date +%Y-%m-%d-%H-%M-%S).bak"
+BACKUP_FILENAME="${DB_DATABASE}-diff-$(date +%Y-%m-%d-%H-%M).bak"
 S3_URL="s3://${S3_ENDPOINT}/backups/${DB_DATABASE}/differential/${BACKUP_FILENAME}"
 CREDENTIAL_NAME="s3://${S3_ENDPOINT}"
 
