@@ -4,9 +4,7 @@ FROM registry.gitlab.com/xrow-public/helm-mssql/mssql:1.2.0
 USER root
 
 RUN yum install -y \
-        curl \
-        jq \
-        ca-certificates && \
+    jq && \
     yum clean all && \
     rm -rf /var/cache/yum
 
