@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'atlantis-aws-*' # e.g atlantis-aws-v0.35.0
+      - 'atlantis-aws-*' # e.g atlantis-aws-v0.42.0
 
 env:
   IMAGE_NAME: atlantis-aws
@@ -15,33 +15,39 @@ env:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Git Commit - set IMAGE_TAG
-        run: echo "IMAGE_TAG=$(echo ${{ github.ref_name}} | sed 's/atlantis-aws-//')" >> $GITHUB_ENV
+        run: |-
+          echo "IMAGE_TAG=$(echo ${{ github.ref_name}} | sed 's/atlantis-aws-//')" >> $GITHUB_ENV
+          echo "IMAGE_ID=$GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME" >> $GITHUB_ENV
 
       - name: Authenticate to Google Cloud
         id: auth
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: projects/${{ env.PROJECT_ID }}/locations/global/workloadIdentityPools/github-actions/providers/github-oidc
           service_account: github-actions@${{ env.PROJECT_NAME }}.iam.gserviceaccount.com
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Docker configuration
         run: gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev --quiet
 
-      - name: Build and push image
-        working-directory: ${{ env.IMAGE_NAME }}
-        run: |
-          docker build -f Dockerfile \
-            -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME:${{ env.IMAGE_TAG}} .
-          docker push -a $GAR_LOCATION-docker.pkg.dev/$PROJECT_NAME/$REPOSITORY/$IMAGE_NAME
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: ./${{ env.IMAGE_NAME }}
+          file: ./${{ env.IMAGE_NAME }}/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_ID }}:${{ env.IMAGE_TAG}}
+          platforms: linux/arm64
+          sbom: false
+          provenance: false
