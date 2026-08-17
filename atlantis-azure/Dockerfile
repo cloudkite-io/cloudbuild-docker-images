@@ -1,4 +1,4 @@
-FROM ghcr.io/runatlantis/atlantis:v0.46.0
+FROM ghcr.io/runatlantis/atlantis:v0.45.0
 
 USER root
 
