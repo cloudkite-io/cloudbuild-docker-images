@@ -1,24 +1,27 @@
-FROM alpine 
-ARG HELM_VERSION=3.11.0
-ARG AZURE_CLI_VERSION=2.39.0
+FROM alpine:3.24.4
+ARG HELM_VERSION=3.22.1
+ARG AZURE_CLI_VERSION=2.92.0
 ENV HELM_VERSION=$HELM_VERSION
 ENV AZURE_CLI_VERSION=$AZURE_CLI_VERSION
+ENV PATH="/opt/az/bin:$PATH"
 
-RUN apk --no-cache --update add \
+RUN apk upgrade --no-cache && apk --no-cache add \
   bash \
   curl \
   yq \
   git \
-  py3-pip
+  python3
 
-RUN apk add --virtual=build \
+# Alpine's Python is externally managed (PEP 668), so azure-cli goes in a venv
+RUN apk add --no-cache --virtual=build \
   gcc \
   libffi-dev \
   musl-dev \
   openssl-dev \
-  python3-dev
-
-RUN pip install azure-cli==${AZURE_CLI_VERSION} && apk del --purge build
+  python3-dev \
+  && python3 -m venv /opt/az \
+  && /opt/az/bin/pip install --no-cache-dir azure-cli==${AZURE_CLI_VERSION} \
+  && apk del --purge build
 
 RUN mkdir /tmp/helm                                      \
   && cd /tmp/helm                                        \
